@@ -10,10 +10,16 @@
     "url": "marcofugaro.it"
   },
   "keywords": [
+    "boilerplate",
+    "template",
+    "scaffold",
+    "library",
     "generator",
     "browser",
     "node",
     "module",
+    "node_module",
+    "node-module",
     "yeoman-generator"
   ],
   "scripts": {
@@ -25,7 +31,7 @@
   },
   "main": "app/index.js",
   "files": [
-    "generators"
+    "app"
   ],
   "devDependencies": {
     "yeoman-test": "^1.6.0",

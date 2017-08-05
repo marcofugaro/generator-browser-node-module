@@ -1,0 +1,41 @@
+{
+	"name": "<%= moduleName %>",
+	"version": "0.0.0",
+	"description": "<%= description %>",
+	"license": "MIT",
+	"repository": "<%= githubUsername %>/<%= moduleName %>",
+	"author": {
+		"name": "<%= name %>",
+		"email": "<%= email %>",
+		"url": "<%= humanizedWebsite %>"
+	},
+	"keywords": [
+    <%= keywords.join(',\n    ') %>
+	],
+	"scripts": {
+		"build": "rollup -c",
+		"test": "",
+    "prepublish": "npm run build"
+	},
+	"main": "build/<%= moduleName %>.min.js",<% if (moduleField) { %>
+  "module": "build/<%= moduleName %>.esm.js",<% } %>
+  "files": [
+    "build/"
+  ],
+  "engines": {
+    "node": ">=4"
+  },
+	"dependencies": {},
+	"devDependencies": {
+    "babel-preset-babili": "^0.1.4",
+		"babel-plugin-lodash": "^3.2.11",
+		"babel-plugin-transform-decorators-legacy": "^1.3.4",
+		"babel-preset-env": "^1.6.0",
+		"babel-preset-stage-0": "^6.24.1",
+		"rollup": "^0.45.2",
+		"rollup-plugin-babel": "^2.7.1",
+		"rollup-plugin-bundle-size": "^1.0.1",
+		"rollup-plugin-commonjs": "^8.0.2",
+		"rollup-plugin-node-resolve": "^3.0.0"
+	}
+}
