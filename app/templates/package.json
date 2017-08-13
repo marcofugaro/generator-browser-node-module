@@ -1,24 +1,24 @@
 {
 	"name": "<%= moduleName %>",
 	"version": "0.0.0",
-	"description": "<%= description %>",
+	"description": "<%= moduleDescription %>",
 	"license": "MIT",
-	"repository": "<%= githubUsername %>/<%= moduleName %>",
+	"repository": "<%= githubUsername %>/<%= repoName %>",
 	"author": {
 		"name": "<%= name %>",
 		"email": "<%= email %>",
 		"url": "<%= humanizedWebsite %>"
 	},
 	"keywords": [
-    <%= keywords.join(',\n    ') %>
-	],
+    <%- keywords.map(word => JSON.stringify(word)).join(',\n    ') %>
+  ],
 	"scripts": {
 		"build": "rollup -c",
 		"test": "",
     "prepublish": "npm run build"
 	},
-	"main": "build/<%= moduleName %>.min.js",<% if (moduleField) { %>
-  "module": "build/<%= moduleName %>.esm.js",<% } %>
+	"main": "build/<%= repoName %>.min.js",<% if (moduleField) { %>
+  "module": "build/<%= repoName %>.esm.js",<% } %>
   "files": [
     "build/"
   ],

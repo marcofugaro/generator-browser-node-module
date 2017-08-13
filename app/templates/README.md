@@ -1,6 +1,6 @@
-# <%= moduleName %> [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![devDependency Status][daviddm-dev-image]][daviddm-dev-url]
+# <%= repoName %> [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![devDependency Status][daviddm-dev-image]][daviddm-dev-url]
 
-> <%= description %>
+> <%= moduleDescription %>
 
 
 ## Install
@@ -48,9 +48,9 @@ Lorem ipsum.
 MIT © [<%= name %>](https://github.com/<%= githubUsername %>)
 
 
-[travis-image]: https://travis-ci.org/<%= githubUsername %>/<%= moduleName %>.svg?branch=master
-[travis-url]: https://travis-ci.org/<%= githubUsername %>/<%= moduleName %>
-[daviddm-image]: https://david-dm.org/<%= githubUsername %>/<%= moduleName %>.svg
-[daviddm-url]: https://david-dm.org/<%= githubUsername %>/<%= moduleName %>
-[daviddm-dev-image]: https://david-dm.org/<%= githubUsername %>/<%= moduleName %>/dev-status.svg
-[daviddm-dev-url]: https://david-dm.org/<%= githubUsername %>/<%= moduleName %>/?type=dev
+[travis-image]: https://travis-ci.org/<%= githubUsername %>/<%= repoName %>.svg?branch=master
+[travis-url]: https://travis-ci.org/<%= githubUsername %>/<%= repoName %>
+[daviddm-image]: https://david-dm.org/<%= githubUsername %>/<%= repoName %>.svg
+[daviddm-url]: https://david-dm.org/<%= githubUsername %>/<%= repoName %>
+[daviddm-dev-image]: https://david-dm.org/<%= githubUsername %>/<%= repoName %>/dev-status.svg
+[daviddm-dev-url]: https://david-dm.org/<%= githubUsername %>/<%= repoName %>/?type=dev
