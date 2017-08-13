@@ -102,6 +102,5 @@ module.exports = class extends Generator {
     } else {
       this.npmInstall()
     }
-		// this.installDependencies({ bower: false })
 	}
 }
