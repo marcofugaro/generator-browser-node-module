@@ -1,3 +1,4 @@
+'use strict'
 const Generator = require('yeoman-generator')
 const _ = require('lodash')
 const superb = require('superb')
@@ -46,7 +47,15 @@ module.exports = class extends Generator {
 			message: 'Would you like to use Yarn in place of npm?',
       default: true,
       store: true,
-		}]).then(({ moduleName, moduleDescription, keywords, moduleField, githubUsername, website, yarn }) => {
+		}]).then((props) => {
+      let moduleName = props.moduleName
+      const moduleDescription = props.moduleDescription
+      let keywords = props.keywords
+      const moduleField = props.moduleField
+      const githubUsername = props.githubUsername
+      let website = props.website
+      const yarn = props.yarn
+
       // these are the filters, workaround for issue https://github.com/yeoman/yeoman-test/issues/29
       if (process.env.NODE_ENV === 'test') {
         moduleName = slugifyPackageName(moduleName)
