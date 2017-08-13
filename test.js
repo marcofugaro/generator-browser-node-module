@@ -1,17 +1,94 @@
-'use strict';
-var path = require('path');
-var assert = require('yeoman-assert');
-var helpers = require('yeoman-test');
+import path from 'path'
+import test from 'ava'
+import helpers from 'yeoman-test'
+import assert from 'yeoman-assert'
+import pify from 'pify'
 
-describe('generator-browser-node-module:app', () => {
-  beforeAll(() => {
-    return helpers.run(path.join(__dirname, '../generators/app'))
-      .withPrompts({someAnswer: true});
-  });
+let generator
 
-  it('creates files', () => {
-    assert.file([
-      'dummyfile.txt'
-    ]);
-  });
-});
+test.beforeEach(async () => {
+	await pify(helpers.testDirectory)(path.join(__dirname, 'tmp'))
+	generator = helpers.createGenerator('browser-node-module:app', ['../app'], null, { skipInstall: true })
+  generator.run = pify(generator.run.bind(generator))
+})
+
+test.serial('generates expected files', async () => {
+	helpers.mockPrompt(generator, {
+		moduleName: 'test',
+		githubUsername: 'test',
+		website: 'test.com',
+	})
+
+	await generator.run()
+
+	assert.file([
+    '.git',
+    'src/index.js',
+    'test/index.js',
+		'.babelrc',
+		'.editorconfig',
+		'.gitattributes',
+		'.gitignore',
+		'.travis.yml',
+		'LICENSE',
+		'package.json',
+		'README.md',
+		'rollup.config.js',
+	])
+})
+
+test.serial('uses the prompted description', async () => {
+	helpers.mockPrompt(generator, {
+		moduleName: 'test',
+		moduleDescription: 'foo',
+		githubUsername: 'test',
+		website: 'test.com',
+	})
+
+	await generator.run()
+
+	assert.fileContent('package.json', /"description": "foo",/)
+	assert.fileContent('README.md', /> foo/)
+})
+
+test.serial('defaults to superb description', async () => {
+	helpers.mockPrompt(generator, {
+		moduleName: '@testa/test',
+		githubUsername: 'test',
+		website: 'test.com',
+	})
+
+	await generator.run()
+
+	assert.fileContent('package.json', /"description": "My .+ module",/)
+	assert.fileContent('README.md', /> My .+ module/)
+})
+
+test.serial('keywords are separated correctly', async () => {
+  helpers.mockPrompt(generator, {
+    moduleName: 'test',
+    githubUsername: 'test',
+    website: 'test.com',
+    keywords: 'some, random, keywords',
+  })
+
+  await generator.run()
+
+	assert.fileContent('package.json', /    "some",/)
+	assert.fileContent('package.json', /    "random",/)
+	assert.fileContent('package.json', /    "keywords"/)
+})
+
+test.serial('moduleField option works', async () => {
+  helpers.mockPrompt(generator, {
+    moduleName: 'test',
+    githubUsername: 'test',
+    website: 'test.com',
+    moduleField: true,
+  })
+
+  await generator.run()
+
+  assert.fileContent('package.json', /"module":/)
+  assert.fileContent('rollup.config.js', /format: 'es'/)
+})
