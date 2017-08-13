@@ -9,15 +9,6 @@ const slugifyPackageName = name => isScoped(name) ? name : _.kebabCase(name)
 const getRepoName = name => isScoped(name) ? name.split('/')[1] : name
 
 module.exports = class extends Generator {
-	constructor(args, opts) {
-		super(args, opts)
-
-		this.option('org', {
-			type: 'string',
-			desc: 'Publish to a GitHub organization account'
-		})
-	}
-
 	init() {
 		return this.prompt([{
 			name: 'moduleName',
@@ -31,7 +22,8 @@ module.exports = class extends Generator {
 		}, {
       name: 'keywords',
       message: 'What are the package keywords? (comma to split)',
-      filter: prompt => return prompt.split(/\s*,\s*/g),
+      default: '',
+      filter: prompt => prompt.split(/\s*,\s*/g),
     }, {
 			name: 'moduleField',
       type: 'confirm',
@@ -39,10 +31,9 @@ module.exports = class extends Generator {
       default: false,
 		}, {
 			name: 'githubUsername',
-			message: 'What is your GitHub username?',
+			message: 'What is your GitHub username (or organization)?',
 			store: true,
 			validate: prompt => prompt.length > 0 ? true : 'You have to provide a username',
-			when: () => !this.options.org,
 		}, {
 			name: 'website',
 			message: 'What is the URL of your website?',
@@ -50,25 +41,36 @@ module.exports = class extends Generator {
 			validate: prompt => prompt.length > 0 ? true : 'You have to provide a website URL',
 			filter: prompt => normalizeUrl(prompt),
 		}, {
-			name: 'useYarn',
+			name: 'yarn',
       type: 'confirm',
 			message: 'Would you like to use Yarn in place of npm?',
       default: true,
       store: true,
-		}]).then((props) => {
+		}]).then(({ moduleName, moduleDescription, keywords, moduleField, githubUsername, website, yarn }) => {
+      // these are the filters, workaround for issue https://github.com/yeoman/yeoman-test/issues/29
+      if (process.env.NODE_ENV === 'test') {
+        moduleName = slugifyPackageName(moduleName)
+        keywords = keywords.split(/\s*,\s*/g)
+        website = normalizeUrl(website)
+      }
+
+      const repoName = getRepoName(moduleName)
+      const camelModuleName =  _.camelCase(repoName)
+      const humanizedWebsite = humanizeUrl(website)
+
 			this.templateVariables = {
-				moduleName: props.moduleName,
-				moduleDescription: props.moduleDescription,
-				camelModuleName: _.camelCase(repoName),
-        keywords: _.uniq(props.keywords),
-        moduleField: props.moduleField,
-				githubUsername: this.options.org || props.githubUsername,
-				repoName: getRepoName(props.moduleName),
+				moduleName,
+				moduleDescription,
+				camelModuleName,
+        keywords,
+        moduleField,
+				githubUsername,
+				repoName,
 				name: this.user.git.name(),
 				email: this.user.git.email(),
-				website: props.website,
-				humanizedWebsite: humanizeUrl(props.website),
-        useYarn: props.useYarn,
+				website,
+				humanizedWebsite,
+        yarn,
 			}
 
 			this.fs.copyTpl(
@@ -86,11 +88,11 @@ module.exports = class extends Generator {
 	}
 
 	install() {
-    if (this.templateVariables.useYarn) {
+    if (this.templateVariables.yarn) {
       this.yarnInstall()
     } else {
       this.npmInstall()
     }
-		// this.installDependencies({bower: false})
+		// this.installDependencies({ bower: false })
 	}
 }
