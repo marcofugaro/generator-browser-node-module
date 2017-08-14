@@ -79,6 +79,21 @@ test.serial('keywords are separated correctly', async () => {
 	assert.fileContent('package.json', /    "keywords"/)
 })
 
+test.serial('yarn option works', async () => {
+  helpers.mockPrompt(generator, {
+    moduleName: 'test',
+    githubUsername: 'test',
+    website: 'test.com',
+    yarn: true,
+  })
+
+  await generator.run()
+
+  assert.fileContent('.travis.yml', /yarn: true/)
+  assert.fileContent('.travis.yml', /yarn build/)
+  assert.fileContent('.travis.yml', /yarn test/)
+})
+
 test.serial('moduleField option works', async () => {
   helpers.mockPrompt(generator, {
     moduleName: 'test',
