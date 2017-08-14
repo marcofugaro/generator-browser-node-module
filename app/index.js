@@ -85,10 +85,17 @@ module.exports = class extends Generator {
 			this.fs.copyTpl(
         `${this.templatePath()}/**`,
         this.destinationPath(),
-        this.templateVariables,
-        null,
-        { globOptions: { dot: true } }
+        this.templateVariables
       )
+
+      const mv = (from, to) => this.fs.move(this.destinationPath(from), this.destinationPath(to))
+
+      mv('babelrc', '.babelrc')
+      mv('editorconfig', '.editorconfig')
+			mv('gitattributes', '.gitattributes')
+			mv('gitignore', '.gitignore')
+			mv('travis.yml', '.travis.yml')
+			mv('_package.json', 'package.json')
 		})
 	}
 
