@@ -1,5 +1,7 @@
 # generator-browser-node-module [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![devDependency Status][daviddm-dev-image]][daviddm-dev-url]
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/marcofugaro/generator-browser-node-module.svg)](https://greenkeeper.io/)
+
 > Scaffold out a library for both the browser and node
 
 The boilerplate repo is [here](https://github.com/marcofugaro/browser-node-module-boilerplate).
