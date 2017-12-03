@@ -4,19 +4,21 @@ import babel from 'rollup-plugin-babel'
 import pkg from './package.json'
 
 export default {
-  entry: 'src/index.js',<% if (!moduleField) { %>
-  format: 'umd',
-  moduleName: '<%= camelModuleName %>',
-  dest: pkg.main,<% } else { %>
-  targets: [
+  input: 'src/index.js',<% if (!moduleField) { %>
+  output: {
+    file: pkg.main,
+    format: 'umd',
+    name: '<%= camelModuleName %>',
+  },<% } else { %>
+  output: [
 		{
+      file: pkg.main,
 			format: 'umd',
-			moduleName: '<%= camelModuleName %>',
-			dest: pkg.main,
+			name: '<%= camelModuleName %>',
 		},
 		{
+      file: pkg.module,
 			format: 'es',
-			dest: pkg.module,
 		},
 	],<% } %>
   plugins: [

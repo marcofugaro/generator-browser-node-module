@@ -28,7 +28,7 @@ module.exports = class extends Generator {
     }, {
 			name: 'moduleField',
       type: 'confirm',
-			message: 'Do you wish to support pkg.module? (Will you lib have multiple exports?)',
+			message: 'Will you lib have multiple exports? (Do you wish to support pkg.module?)',
       default: false,
 		}, {
 			name: 'githubUsername',
