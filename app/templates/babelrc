@@ -9,5 +9,13 @@
     }],
     "stage-0"
   ],
-  "plugins": ["lodash", "transform-decorators-legacy"]
+  "plugins": [
+    "lodash",
+    "transform-decorators-legacy",
+    ["transform-runtime", {
+      "helpers": false,
+      "polyfill": false,
+      "regenerator": true
+    }]
+  ]
 }
