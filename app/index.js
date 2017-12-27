@@ -39,8 +39,7 @@ module.exports = class extends Generator {
 			name: 'website',
 			message: 'What is the URL of your website?',
 			store: true,
-			validate: prompt => prompt.length > 0 ? true : 'You have to provide a website URL',
-			filter: prompt => normalizeUrl(prompt),
+			filter: prompt => prompt ? humanizeUrl(normalizeUrl(prompt)) : null,
 		}, {
 			name: 'yarn',
       type: 'confirm',
@@ -60,12 +59,11 @@ module.exports = class extends Generator {
       if (process.env.NODE_ENV === 'test') {
         moduleName = slugifyPackageName(moduleName)
         keywords = keywords.split(/\s*,\s*/g)
-        website = normalizeUrl(website)
+        website = website ? humanizeUrl(normalizeUrl(website)) : null
       }
 
       const repoName = getRepoName(moduleName)
       const camelModuleName =  _.camelCase(repoName)
-      const humanizedWebsite = humanizeUrl(website)
 
 			this.templateVariables = {
 				moduleName,
@@ -78,7 +76,6 @@ module.exports = class extends Generator {
 				name: this.user.git.name(),
 				email: this.user.git.email(),
 				website,
-				humanizedWebsite,
         yarn,
 			}
 
@@ -89,6 +86,7 @@ module.exports = class extends Generator {
       )
 
       const mv = (from, to) => this.fs.move(this.destinationPath(from), this.destinationPath(to))
+      const rm = (file) => this.fs.delete(this.destinationPath(file))
 
       mv('babelrc', '.babelrc')
       mv('editorconfig', '.editorconfig')
@@ -96,6 +94,8 @@ module.exports = class extends Generator {
 			mv('gitignore', '.gitignore')
 			mv('travis.yml', '.travis.yml')
 			mv('_package.json', 'package.json')
+
+      rm('.yo-rc.json')
 		})
 	}
 

@@ -16,7 +16,6 @@ test.serial('generates expected files', async () => {
 	helpers.mockPrompt(generator, {
 		moduleName: 'test',
 		githubUsername: 'test',
-		website: 'test.com',
 	})
 
 	await generator.run()
@@ -42,12 +41,11 @@ test.serial('uses the prompted description', async () => {
 		moduleName: 'test',
 		moduleDescription: 'foo',
 		githubUsername: 'test',
-		website: 'test.com',
 	})
 
 	await generator.run()
 
-	assert.fileContent('package.json', /"description": "foo",/)
+  assert.jsonFileContent('package.json', { description: 'foo' })
 	assert.fileContent('README.md', /> foo/)
 })
 
@@ -55,7 +53,6 @@ test.serial('defaults to superb description', async () => {
 	helpers.mockPrompt(generator, {
 		moduleName: '@testa/test',
 		githubUsername: 'test',
-		website: 'test.com',
 	})
 
 	await generator.run()
@@ -68,22 +65,18 @@ test.serial('keywords are separated correctly', async () => {
   helpers.mockPrompt(generator, {
     moduleName: 'test',
     githubUsername: 'test',
-    website: 'test.com',
     keywords: 'some, random, keywords',
   })
 
   await generator.run()
 
-	assert.fileContent('package.json', /    "some",/)
-	assert.fileContent('package.json', /    "random",/)
-	assert.fileContent('package.json', /    "keywords"/)
+  assert.jsonFileContent('package.json', { keywords: ['some', 'random', 'keywords'] })
 })
 
 test.serial('yarn option works', async () => {
   helpers.mockPrompt(generator, {
     moduleName: 'test',
     githubUsername: 'test',
-    website: 'test.com',
     yarn: true,
   })
 
