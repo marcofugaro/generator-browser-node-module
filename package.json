@@ -1,6 +1,6 @@
 {
   "name": "generator-browser-node-module",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Scaffold out a library for both the browser and node",
   "license": "MIT",
   "repository": "marcofugaro/generator-browser-node-module",
