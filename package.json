@@ -23,7 +23,8 @@
     "yeoman-generator"
   ],
   "scripts": {
-    "test": "NODE_ENV=test ava"
+    "test": "NODE_ENV=test ava",
+    "prepublishOnly": "npm run test"
   },
   "ava": {
     "failWithoutAssertions": false
