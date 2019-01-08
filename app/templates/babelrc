@@ -1,21 +1,14 @@
 {
   "presets": [
-    ["env", {
-      "targets": {
-        "browsers": ["last 2 versions", "ie 11"],
-        "node": "6"
-      },
+    ["@babel/preset-env", {
+      "useBuiltIns": "usage",
       "modules": false
     }],
-    "stage-0"
+    ["babel-preset-proposals", {
+      "all": true
+    }]
   ],
   "plugins": [
-    "lodash",
-    "transform-decorators-legacy",
-    ["transform-runtime", {
-      "helpers": false,
-      "polyfill": false,
-      "regenerator": true
-    }]
+    "babel-plugin-lodash"
   ]
 }

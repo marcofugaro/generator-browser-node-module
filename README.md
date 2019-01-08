@@ -1,5 +1,4 @@
-# generator-browser-node-module [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![devDependency Status][daviddm-dev-image]][daviddm-dev-url]
-
+# generator-browser-node-module [![Build Status][travis-image]][travis-url]
 > Scaffold out a library for both the browser and node
 
 The boilerplate repo is [here](https://github.com/marcofugaro/browser-node-module-boilerplate).
@@ -26,7 +25,7 @@ or just
 ```bash
 yo
 ```
-and select `browser-node-module`.
+and select `Browser Node Module`.
 
 ## License
 
@@ -35,7 +34,3 @@ MIT © [Marco Fugaro](marcofugaro.it)
 
 [travis-image]: https://travis-ci.org/marcofugaro/generator-browser-node-module.svg?branch=master
 [travis-url]: https://travis-ci.org/marcofugaro/generator-browser-node-module
-[daviddm-image]: https://david-dm.org/marcofugaro/generator-browser-node-module.svg
-[daviddm-url]: https://david-dm.org/marcofugaro/generator-browser-node-module
-[daviddm-dev-image]: https://david-dm.org/marcofugaro/generator-browser-node-module/dev-status.svg
-[daviddm-dev-url]: https://david-dm.org/marcofugaro/generator-browser-node-module/?type=dev

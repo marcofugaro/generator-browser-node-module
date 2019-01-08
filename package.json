@@ -34,17 +34,17 @@
     "app"
   ],
   "devDependencies": {
-    "ava": "^0.24.0",
-    "pify": "^3.0.0",
-    "yeoman-assert": "^3.1.0",
-    "yeoman-test": "^1.6.0"
+    "ava": "^1.0.1",
+    "pify": "^4.0.1",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^1.9.1"
   },
   "dependencies": {
-    "humanize-url": "^1.0.1",
+    "humanize-url": "^2.0.0",
     "is-scoped": "^1.0.0",
-    "lodash": "^4.17.4",
-    "normalize-url": "^2.0.0",
-    "superb": "^2.0.0",
-    "yeoman-generator": "^2.0.1"
+    "lodash": "^4.17.11",
+    "normalize-url": "^4.1.0",
+    "superb": "^3.0.0",
+    "yeoman-generator": "^3.2.0"
   }
 }
