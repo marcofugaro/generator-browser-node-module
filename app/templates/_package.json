@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "<%= moduleDescription %>",
   "license": "MIT",
-  "repository": "<%= githubUsername %>/<%= repoName %>",
+  "repository": "https://github.com/<%= githubUsername %>/<%= repoName %>",
   "author": {
     "name": "<%= name %>",
     "email": "<%= email %>",
