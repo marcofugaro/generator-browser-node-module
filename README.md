@@ -29,10 +29,5 @@ yo
 ```
 and select `Browser Node Module`.
 
-## License
-
-MIT © [Marco Fugaro](marcofugaro.it)
-
-
 [travis-image]: https://travis-ci.org/marcofugaro/generator-browser-node-module.svg?branch=master
 [travis-url]: https://travis-ci.org/marcofugaro/generator-browser-node-module
