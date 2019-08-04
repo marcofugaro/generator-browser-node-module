@@ -3,7 +3,6 @@ const Generator = require('yeoman-generator')
 const _ = require('lodash')
 const superb = require('superb')
 const normalizeUrl = require('normalize-url')
-const humanizeUrl = require('humanize-url')
 const isScoped = require('is-scoped')
 
 const slugifyPackageName = name => isScoped(name) ? name : _.kebabCase(name)
@@ -39,7 +38,7 @@ module.exports = class extends Generator {
 			name: 'website',
 			message: 'What is the URL of your website?',
 			store: true,
-			filter: prompt => prompt ? humanizeUrl(normalizeUrl(prompt)) : null,
+			filter: prompt => prompt ? normalizeUrl(prompt) : null,
 		}, {
 			name: 'yarn',
       type: 'confirm',
@@ -59,7 +58,7 @@ module.exports = class extends Generator {
       if (process.env.NODE_ENV === 'test') {
         moduleName = slugifyPackageName(moduleName)
         keywords = keywords.split(/\s*,\s*/g)
-        website = website ? humanizeUrl(normalizeUrl(website)) : null
+        website = website ? normalizeUrl(website) : null
       }
 
       const repoName = getRepoName(moduleName)

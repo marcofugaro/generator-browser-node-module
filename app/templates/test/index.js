@@ -1,6 +1,6 @@
 import test from 'ava'
 import <%= camelModuleName %> from '../build/<%= repoName %>'
 
-test(t => {
+test('pass', t => {
   t.pass()
 })

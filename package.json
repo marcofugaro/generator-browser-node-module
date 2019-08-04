@@ -7,7 +7,7 @@
   "author": {
     "name": "Marco Fugaro",
     "email": "marco.fugaro@gmail.com",
-    "url": "marcofugaro.it"
+    "url": "https://marcofugaro.it"
   },
   "keywords": [
     "boilerplate",
@@ -40,7 +40,6 @@
     "yeoman-test": "^1.9.1"
   },
   "dependencies": {
-    "humanize-url": "^2.1.0",
     "is-scoped": "^2.1.0",
     "lodash": "^4.17.15",
     "normalize-url": "^4.3.0",

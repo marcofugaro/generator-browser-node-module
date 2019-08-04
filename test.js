@@ -14,7 +14,7 @@ test.beforeEach(async () => {
 
 test.serial('generates expected files', async () => {
 	helpers.mockPrompt(generator, {
-		moduleName: 'test',
+		moduleName: 'testModule',
 		githubUsername: 'test',
 	})
 
@@ -38,7 +38,7 @@ test.serial('generates expected files', async () => {
 
 test.serial('uses the prompted description', async () => {
 	helpers.mockPrompt(generator, {
-		moduleName: 'test',
+		moduleName: 'testModule',
 		moduleDescription: 'foo',
 		githubUsername: 'test',
 	})
@@ -63,7 +63,7 @@ test.serial('defaults to superb description', async () => {
 
 test.serial('keywords are separated correctly', async () => {
   helpers.mockPrompt(generator, {
-    moduleName: 'test',
+    moduleName: 'testModule',
     githubUsername: 'test',
     keywords: 'some, random, keywords',
   })
@@ -75,7 +75,7 @@ test.serial('keywords are separated correctly', async () => {
 
 test.serial('yarn option works', async () => {
   helpers.mockPrompt(generator, {
-    moduleName: 'test',
+    moduleName: 'testModule',
     githubUsername: 'test',
     yarn: true,
   })
@@ -89,7 +89,7 @@ test.serial('yarn option works', async () => {
 
 test.serial('moduleField option works', async () => {
   helpers.mockPrompt(generator, {
-    moduleName: 'test',
+    moduleName: 'testModule',
     githubUsername: 'test',
     website: 'test.com',
     moduleField: true,
